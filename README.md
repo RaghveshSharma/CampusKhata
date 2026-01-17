@@ -101,7 +101,7 @@ A demo video showing all features, UI interactions, and DOM updates has been pro
 
 ## 🧑‍💻 Developer
 
-Developed as a **Web Dev II Final Project** using:
+Developed as a **Web Dev Final Project** using:
 - HTML
 - CSS
 - Vanilla JavaScript
