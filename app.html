@@ -62,17 +62,16 @@
                 </h3>
 
                 <!-- Type Toggle -->
-            <div class="toggle">
-                <button class="toggle-btn" data-type="income">
-                    <i class="fa-solid fa-plus"></i>
-                    Income
-                </button>
-                <button class="toggle-btn active" data-type="expense">
-                    <i class="fa-solid fa-minus"></i>
-                    Expense
-                </button>
-            </div>
-
+                <div class="toggle">
+                    <button class="toggle-btn" data-type="income">
+                        <i class="fa-solid fa-plus"></i>
+                            Income
+                    </button>
+                    <button class="toggle-btn active" data-type="expense">
+                        <i class="fa-solid fa-minus"></i>
+                            Expense
+                    </button>
+                </div>
                 <!-- Form -->
                 <form id="transactionForm">
                     <input 
@@ -80,21 +79,12 @@
                         id="amount" 
                         placeholder="Amount (₹)" 
                         step="any"
+                        min="0"
                         required
                     >
 
                     <select id="category" required>
                         <option value="">Select Category</option>
-                        <option value="food">🍔 Food & Dining</option>
-                        <option value="travel">🚌 Travel</option>
-                        <option value="shopping">🛒 Shopping</option>
-                        <option value="entertainment">🎬 Entertainment</option>
-                        <option value="education">📚 Education</option>
-                        <option value="health">🏥 Health</option>
-                        <option value="bills">💡 Bills</option>
-                        <option value="personal">💇 Personal</option>
-                        <option value="gifts">🎁 Gifts</option>
-                        <option value="other">💰 Other</option>
                     </select>
 
                     <input 
@@ -175,4 +165,3 @@
     <script src="app.js"></script>
 </body>
 </html>
-
