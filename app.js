@@ -5,7 +5,33 @@ let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 let currentFilter = 'all';
 let currentTheme = 'light';
+const expenseCategories = [
+  { value: "☕ Tea / Coffee", text: "☕ Tea / Coffee" },
+  { value: "🍪 Snacks", text: "🍪 Snacks" },
+  { value: "🍽 Meals", text: "🍽 Meals" },
+  { value: "🚌 Travel", text: "🚌 Travel" },
+  { value: "✏️ Stationery", text: "✏️ Stationery" },
+  { value: "📱 Recharge / Internet", text: "📱 Recharge / Internet" },
+  { value: "🎬 Entertainment", text: "🎬 Entertainment" },
+  { value: "🛍 Shopping", text: "🛍 Shopping" },
+  { value: "📚 Books / Courses", text: "📚 Books / Courses" },
+  { value: "💇 Personal Care", text: "💇 Personal Care" },
+  { value: "🏠 Rent / Hostel", text: "🏠 Rent / Hostel" },
+  { value: "🎁 Gifts", text: "🎁 Gifts" },
+  { value: "💸 Other Expense", text: "💸 Other Expense" }
+];
 
+const incomeCategories = [
+  { value: "💵 Pocket Money", text: "💵 Pocket Money" },
+  { value: "🧑‍💻 Internship Stipend", text: "🧑‍💻 Internship Stipend" },
+  { value: "💻 Freelancing", text: "💻 Freelancing" },
+  { value: "📝 Project Payment", text: "📝 Project Payment" },
+  { value: "🎓 Scholarship", text: "🎓 Scholarship" },
+  { value: "🏆 Competition Prize", text: "🏆 Competition Prize" },
+  { value: "🕐 Part-time Job", text: "🕐 Part-time Job" },
+  { value: "🎁 Gifts Received", text: "🎁 Gifts Received" },
+  { value: "💰 Other Income", text: "💰 Other Income" }
+];
 // ================= GET ELEMENTS =================
 const toggleBtns = document.querySelectorAll('.toggle-btn');
 const transactionForm = document.getElementById('transactionForm');
@@ -33,6 +59,7 @@ const themeBtn = document.getElementById('themeBtn');
 // ================= SET TODAY'S DATE =================
 const today = new Date().toISOString().split('T')[0];
 dateInput.value = today;
+dateInput.max = today;
 
 // ================= LOAD FROM LOCALSTORAGE =================
 function loadFromLocalStorage() {
@@ -92,8 +119,25 @@ toggleBtns.forEach(function(btn) {
     
     btn.classList.add('active');
     currentType = btn.getAttribute('data-type');
+
+    updateCategoryOptions();
   });
 });
+
+
+function updateCategoryOptions() {
+  categoryInput.innerHTML = '<option value="">Select Category</option>';
+
+  let categoriesToUse = currentType === 'income' ? incomeCategories : expenseCategories;
+
+  categoriesToUse.forEach(function(cat) {
+    const option = document.createElement('option');
+    option.value = cat.value;
+    option.textContent = cat.text;
+    categoryInput.appendChild(option);
+  });
+}
+
 
 // ================= ADD TRANSACTION =================
 transactionForm.addEventListener('submit', function(e) {
@@ -132,15 +176,14 @@ function createTransactionElement(transaction) {
   transactionDiv.classList.add('transaction-item');
   transactionDiv.classList.add(transaction.type);
   
-  const categoryEmoji = getCategoryEmoji(transaction.category);
-  
+
   transactionDiv.innerHTML = `
     <div class="transaction-left">
       <div class="transaction-icon">
         ${transaction.type === 'expense' ? '<i class="fa-solid fa-minus"></i>' : '<i class="fa-solid fa-plus"></i>'}
       </div>
       <div class="transaction-details">
-        <div class="transaction-category">${categoryEmoji} ${transaction.category}</div>
+        <div class="transaction-category"> ${transaction.category}</div>
         <div class="transaction-description">${transaction.description}</div>
         <div class="transaction-date">${formatDate(transaction.date)}</div>
       </div>
@@ -383,23 +426,6 @@ function formatDate(dateString) {
   return day + ' ' + month + ' ' + year;
 }
 
-// ================= HELPER: GET CATEGORY EMOJI =================
-function getCategoryEmoji(category) {
-  const emojis = {
-    'food': '🍔',
-    'travel': '🚌',
-    'shopping': '🛒',
-    'entertainment': '🎬',
-    'education': '📚',
-    'health': '🏥',
-    'bills': '💡',
-    'personal': '💇',
-    'gifts': '🎁',
-    'other': '💰'
-  };
-  
-  return emojis[category] || '💰';
-}
 
 // ================= INITIALIZE APP =================
 function init() {
@@ -407,6 +433,8 @@ function init() {
   updateMonthDisplay();
   applyCurrentFilter();
   updateCurrentMonthTotals();
+  updateCategoryOptions();
+
   
   console.log('🎉 Campus Khata loaded!');
   console.log('Current Month:', currentMonth + 1, currentYear);
