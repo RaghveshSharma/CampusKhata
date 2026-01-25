@@ -167,7 +167,7 @@ transactionForm.addEventListener('submit', function(e) {
   descriptionInput.value = '';
   dateInput.value = today;
   
-  console.log('Transaction added:', transaction);
+  //console.log('Transaction added:', transaction);
 });
 
 // ================= CREATE TRANSACTION ELEMENT =================
@@ -242,7 +242,6 @@ function deleteTransaction(id) {
     applyCurrentFilter();
     updateCurrentMonthTotals();
     
-    console.log('Transaction deleted');
   }
 }
 
@@ -303,7 +302,7 @@ filterBtns.forEach(function(btn) {
     currentFilter = btn.getAttribute('data-filter');
     applyCurrentFilter();
     
-    console.log('Filter applied:', currentFilter);
+   // console.log('Filter applied:', currentFilter);
   });
 });
 
@@ -438,4 +437,5 @@ function init() {
 }
 
 init();
+
 
