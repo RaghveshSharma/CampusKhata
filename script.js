@@ -1,4 +1,4 @@
-// ================= QUOTES ARRAY =================
+
 const quotes = [
   "Save before you spend, not after.",
   "Small expenses add up faster than you think.",
@@ -14,7 +14,7 @@ const quotes = [
   "Your future self will thank you for tracking expenses today."
 ];
 
-// ================= DISPLAY RANDOM QUOTE =================
+
 function displayRandomQuote() {
   const quoteEl = document.getElementById("quoteText");
   
@@ -34,7 +34,7 @@ displayRandomQuote();
 setInterval(displayRandomQuote, 8000);
 
 // ================= SMOOTH SCROLLING =================
-// 📌 UNDERSTAND THIS: When you click navbar links, page smoothly scrolls to that section
+
 const allNavLinks = document.querySelectorAll('a[href^="#"]');
 
 allNavLinks.forEach(function(link) {
@@ -148,7 +148,7 @@ emailInput.addEventListener('keypress', function(e) {
 });
 
 // ================= FEATURE CARDS ANIMATION =================
-// 📌 UNDERSTAND THIS: Cards appear with animation when you scroll to them
+
 const allFeatureCards = document.querySelectorAll('.feature-card');
 
 allFeatureCards.forEach(function(card, index) {
@@ -211,7 +211,7 @@ document.querySelectorAll('.feature-card').forEach(function(card) {
 });
 
 // ================= ACTIVE NAV LINK ON SCROLL =================
-// 📌 UNDERSTAND THIS: Navbar link gets highlighted when you reach that section
+
 const allSections = document.querySelectorAll('section[id]');
 const allLinks = document.querySelectorAll('.nav-link');
 
@@ -236,6 +236,3 @@ window.addEventListener('scroll', function() {
   });
 });
 
-// ================= LOG READY MESSAGE =================
-console.log('🎉 Campus Khata is ready!');
-console.log('💡 Now build the expense tracker functionality in app.js');
