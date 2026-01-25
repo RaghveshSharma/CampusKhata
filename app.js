@@ -435,11 +435,7 @@ function init() {
   updateCurrentMonthTotals();
   updateCategoryOptions();
 
-  
-  console.log('🎉 Campus Khata loaded!');
-  console.log('Current Month:', currentMonth + 1, currentYear);
-  console.log('Total transactions (all time):', transactions.length);
-  console.log('Current theme:', currentTheme);
 }
 
 init();
+
